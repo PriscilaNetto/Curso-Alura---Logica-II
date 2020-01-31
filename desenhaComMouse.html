@@ -1,0 +1,46 @@
+<canvas width="600" height="400"></canvas>
+<br>
+Escolha uma cor <input type="color">
+
+<script>
+  let tela = document.querySelector('canvas')
+
+  let paleta = document.querySelector('input')
+  //iremos a cor escolhida usando o exemplo acima
+
+  let pincel = tela.getContext('2d')
+
+  pincel.fillStyle = 'grey'
+  pincel.fillRect(0, 0, 600, 400)
+
+  let desenha = false;
+
+   tela.onmousemove = function(evento){
+   
+    if(desenha){
+      let x = evento.pageX - tela.offsetLeft
+      let y = evento.pageY - tela.offsetTop
+      pincel.fillStyle = paleta.value //sempre irá pegar o valor atual da paleta
+      pincel.beginPath();
+      pincel.arc(x, y, 50, 0, 2 * 3,14)
+      pincel.fill()
+    }
+
+      console.log(x + ',' + y)
+  }
+
+  
+
+  //Exemplo de função anônima
+
+  tela.onmousedown = function(){
+    desenha = true
+  }
+
+  tela.onmouseup = function() {
+    desenha = false
+  }
+  
+
+
+</script>
